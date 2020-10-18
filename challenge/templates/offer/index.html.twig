@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block body_id 'offer_index' %}
+{% block main %}
+    <h2>Offers</h2>
+    <table class="table table-striped table-middle-aligned">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Cashback</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for offer in offers %}
+            <tr>
+                <td>{{ offer.name }}</td>
+                <td><a href="{{ offer.imageUrl }}" target="_blank"><img src="{{ offer.imageUrl }}" /></a></td>
+                <td>{{ offer.cashBack | format_currency('USD') }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3" align="center">No Offers</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

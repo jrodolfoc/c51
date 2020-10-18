@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'homepage' %}
+
+{#
+    the homepage is a special page which displays neither a header nor a footer.
+    this is done with the 'trick' of defining empty Twig blocks without any content
+#}
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <h1>C51 Code Challenge</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="jumbotron">
+                <p>
+                    This app shows offers and their attributes
+                </p>
+                <p>
+                    <a class="btn btn-primary btn-lg" href="{{ path('offer_index') }}">
+                        <i class="fa fa-users" aria-hidden="true"></i> Take me there!
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
