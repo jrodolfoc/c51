@@ -44,16 +44,34 @@ class Offer
      */
     private $cash_back;
 
+    /**
+     * Offer constructor.
+     * @param $offer_id
+     */
+    public function __construct(int $offer_id)
+    {
+        $this->offer_id = $offer_id;
+    }
+
+    /**
+     * @return int|null
+     */
     public function getOfferId(): ?int
     {
         return $this->offer_id;
     }
 
+    /**
+     * @param string $name
+     */
     public function setName(string $name): void
     {
         $this->name = $name;
     }
 
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
