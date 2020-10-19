@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Offer;
 use App\Repository\OfferRepository;
+use App\Utils\SortOffersFormatter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,37 +28,16 @@ class OfferController extends AbstractController
      */
     public function index(OfferRepository $offerRepository, string $sort, string $direction): Response
     {
-        if (!in_array(strtolower($sort), ['name', 'cash_back'])) {
-            $sort = 'name';
-        }
-
-        if (!in_array(strtolower($direction), ['asc', 'desc'])) {
-            $direction = 'asc';
-        }
+        $sortFormatter = new SortOffersFormatter($sort, $direction);
 
         /** @var Offer[] $offers */
-        $offers = $offerRepository->findBy([], [$sort => $direction]);
+        $offers = $offerRepository->findBy([], [$sortFormatter->getSort() => $sortFormatter->getDirection()]);
 
         return $this->render('offer/index.html.twig', [
             'offers' => $offers,
-            'sort' => $sort,
-            'nameDirection' => $this->calculateNextDirection('name', $sort, $direction),
-            'cashDirection' => $this->calculateNextDirection('cash_back', $sort, $direction),
+            'sort' => $sortFormatter->getSort(),
+            'nameDirection' => $sortFormatter->calculateNextDirection('name'),
+            'cashDirection' => $sortFormatter->calculateNextDirection('cash_back'),
         ]);
-    }
-
-    /**
-     * @param $column
-     * @param $currentSort
-     * @param $currentDirection
-     * @return string
-     */
-    private function calculateNextDirection($column, $currentSort, $currentDirection)
-    {
-        if ($column != $currentSort) {
-            return 'asc';
-        }
-
-        return $currentDirection == 'asc' ? 'desc' : 'asc';
     }
 }

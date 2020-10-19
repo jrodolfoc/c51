@@ -26,7 +26,6 @@ services:
       - DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@database:3306/${DATABASE_NAME}?serverVersion=mariadb-10.5.6
     volumes:
       - ../challenge:/var/www
-      - ../data/c51.json:/var/www/c51.json
 
   nginx:
     build:
