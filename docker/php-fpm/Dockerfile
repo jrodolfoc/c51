@@ -8,6 +8,6 @@ RUN docker-php-ext-install pdo_mysql
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www
+CMD composer install ; wait-for-it database:3306 -- php bin/console doctrine:migrations:migrate -n -v ; php-fpm
 
-CMD composer install ; wait-for-it database:3306 -- bin/console doctrine:migrations:migrate -n -v ; php-fpm
 EXPOSE 9000
