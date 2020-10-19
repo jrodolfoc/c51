@@ -1,0 +1,23 @@
+{
+  "batch_id": 0,
+  "offers": [
+    {
+      "offer_id": "222222",
+      "name": "Buy 2: Select TRISCUIT Crackers",
+      "image_url": "https://d3bx4ud3idzsqf.cloudfront.net/public/production/6840/67561_1535141624.jpg",
+      "cash_back": 1.0
+    },
+    {
+      "offer_id": "3333333",
+      "name": "International Collection Oils",
+      "image_url": "https://d3bx4ud3idzsqf.cloudfront.net/public/production/7105/63947_1528312196.jpg",
+      "cash_back": 1.0
+    },
+    {
+      "offer_id": "444444",
+      "name": "Chosen Foods Avocado Oil Dressings",
+      "image_url": "https://d3bx4ud3idzsqf.cloudfront.net/public/production/7527/67168_1533221549.jpg",
+      "cash_back": 3.0
+    }
+    ]
+}
