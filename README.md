@@ -14,6 +14,10 @@ docker-compose build
 docker-compose up
 
 // Open browser on http://localhost:8000
+// WARNING: Composer can take some minutes to finish
+// Please wait until you see a message similar to:
+// NOTICE: fpm is running, pid 1
+// NOTICE: ready to handle connections
 ```
 
 ## License
