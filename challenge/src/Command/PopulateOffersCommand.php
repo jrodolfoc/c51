@@ -99,6 +99,11 @@ class PopulateOffersCommand extends Command
         $offers = json_decode($offers_json);
 
         foreach ($offers->offers as $offer) {
+            if ($this->offerIdExists($offer->offer_id)) {
+                $this->io->success(sprintf('Offer: [%s] already exists and will not be inserted again', $offer->name));
+                continue;
+            }
+
             $offerEntity = new Offer($offer->offer_id);
             $offerEntity->setCashBack($offer->cash_back);
             $offerEntity->setImageUrl($offer->image_url);
@@ -114,10 +119,10 @@ class PopulateOffersCommand extends Command
 
     /**
      * Check if an offer with the same id already exists
-     * @param $offer_id
+     * @param int $offer_id
      * @return bool
      */
-    private function offerIdExists($offer_id): bool
+    private function offerIdExists(int $offer_id): bool
     {
         $existingId = $this->offers->findOneBy(['offer_id' => $offer_id]);
         return null === $existingId;
