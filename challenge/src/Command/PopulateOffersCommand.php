@@ -125,7 +125,7 @@ class PopulateOffersCommand extends Command
     private function offerIdExists(int $offer_id): bool
     {
         $existingId = $this->offers->findOneBy(['offer_id' => $offer_id]);
-        return null === $existingId;
+        return null !== $existingId;
     }
 
     /**
